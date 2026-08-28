@@ -1,12 +1,12 @@
 # foxerw 的个人博客
 
-基于 Astro 的静态博客，部署在 GitHub Pages。文章用 Markdown 编写，构建期预渲染为静态 HTML。
+基于 Astro 的静态博客，支持部署到 GitHub Pages 或 Microverse（详见 `如何部署到microverse.md`）。文章用 Markdown 编写，构建期预渲染为静态 HTML。
 
 ## 本地开发
 
 ```bash
 npm install
-npm run dev      # http://localhost:4321/personal-blog/
+npm run dev      # http://localhost:4321/
 ```
 
 ## 常用命令
@@ -15,6 +15,7 @@ npm run dev      # http://localhost:4321/personal-blog/
 |---|---|
 | `npm run dev` | 本地开发 |
 | `npm run build` | 构建静态站点到 dist/（含 Pagefind 索引） |
+| `npm start` | 生产环境静态服务器（Microverse 部署用，读 PORT） |
 | `npm run preview` | 预览构建产物 |
 | `npm run check` | TypeScript 类型检查 |
 | `npm run test` | 运行 Vitest 单测 |
@@ -25,10 +26,21 @@ npm run dev      # http://localhost:4321/personal-blog/
 
 ## 部署
 
-推送 `main` 分支 → GitHub Actions 自动构建并发布到 Pages。
+`site` / `base` 由构建时的环境变量注入（见 `astro.config.mjs`）：
+
+| 变量 | 作用 | 默认值 |
+|---|---|---|
+| `SITE_URL` | 站点绝对地址（RSS / sitemap / robots 的 canonical） | `http://localhost:4321` |
+| `BASE_PATH` | 部署子路径前缀 | `/` |
+
+### GitHub Pages
+
+推送 `main` 分支 → GitHub Actions 自动构建并发布到 Pages（workflow 已注入 `BASE_PATH=/personal-blog/`、`SITE_URL=https://foxerw.github.io`）。
 首次需在仓库 Settings → Pages → Source 选 "GitHub Actions"。
 
-`astro.config.mjs` 的 `site`/`base` 按实际部署地址修改。
+### Microverse
+
+创建 **npm** 类型应用 → 上传源码 → 设 `SITE_URL` → Start。详见 `如何部署到microverse.md`。
 
 ## 技术栈
 

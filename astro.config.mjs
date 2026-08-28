@@ -4,11 +4,12 @@ import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
-// 部署前按实际仓库填写：用户页用 https://<user>.github.io 且 base='/'；
-// 项目页用 https://<user>.github.io 且 base='/<repo>'。
+// site/base 由部署平台在构建时通过环境变量注入：
+//  - GitHub Pages 项目页：SITE_URL=https://foxerw.github.io、BASE_PATH=/personal-blog/
+//  - Microverse / 根域名部署：设置 SITE_URL 即可，BASE_PATH 默认 '/'
 export default defineConfig({
-  site: 'https://foxerw.github.io',
-  base: '/personal-blog/',
+  site: process.env.SITE_URL || 'http://localhost:4321',
+  base: process.env.BASE_PATH || '/',
   integrations: [react(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
