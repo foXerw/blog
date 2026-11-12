@@ -1,13 +1,13 @@
 # 如何部署到 Microverse
 
 Microverse 把本博客当 **npm 应用**运行，启动时依次执行：
-`npm install --include=dev` → `npm run build`（`astro build` + Pagefind）→ `npm start`（注入 `PORT`）。
+`npm install --include=dev` → `npm run build`（D2 预渲染 + `astro build` + Pagefind）→ `npm start`（注入 `PORT`）。
 
 ## 步骤
 
 1. 在 Microverse 新建应用，类型选 **npm**。
 2. 上传**源码**（不是 `dist/`）：
-   - 必需：`package.json`、`astro.config.mjs`、`server.mjs`、`tsconfig.json`、`src/`、`public/`
+   - 必需：`package.json`、`astro.config.mjs`、`server.mjs`、`tsconfig.json`、`src/`、`scripts/`、`public/`
    - 建议带上：`package-lock.json`
    - **务必排除**：`node_modules/`、`dist/`、`.git/`、`.astro/`、`.claude/`、`docs/`、`.superpowers/`、`.github/`
    - 打包成 ZIP 上传更方便（Microverse 会自动解压）；直接拖拽多个文件也可，但别超过平台的文件数 / 体积上限（默认 100 个文件 / 单文件 100MB）。

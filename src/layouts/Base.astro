@@ -42,5 +42,23 @@ const ogImage = image ? new URL(image, Astro.site) : undefined;
       <slot />
     </main>
     <Footer />
+    <script is:inline>
+      // D2 图有明暗两套 SVG；跟随站点主题切换 src，而不是依赖系统 prefers-color-scheme
+      (function () {
+        function sync() {
+          var dark = document.documentElement.dataset.theme === 'dark';
+          document.querySelectorAll('img.d2-svg').forEach(function (img) {
+            var next = dark ? img.dataset.dark : img.dataset.light;
+            if (next && img.getAttribute('src') !== next) img.setAttribute('src', next);
+          });
+        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', sync);
+        else sync();
+        new MutationObserver(sync).observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ['data-theme'],
+        });
+      })();
+    </script>
   </body>
 </html>

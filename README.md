@@ -13,11 +13,14 @@ npm run dev      # http://localhost:4321/
 
 | 命令 | 作用 |
 |---|---|
-| `npm run dev` | 本地开发 |
-| `npm run build` | 构建静态站点到 dist/（含 Pagefind 索引） |
+| `npm run dev` | 本地开发（启动前自动补齐缺失的 D2 图） |
+| `npm run build` | 构建静态站点到 dist/（D2 预渲染 + Pagefind 索引） |
+| `npm run d2` | 只渲染缺失/新增的 D2 图 |
+| `npm run d2:force` | 全部重新渲染 D2 图（改渲染参数后用） |
+| `npm run d2:prune` | 删除已无文章引用的 D2 图 |
 | `npm start` | 生产环境静态服务器（Microverse 部署用，读 PORT） |
 | `npm run preview` | 预览构建产物 |
-| `npm run check` | TypeScript 类型检查 |
+| `npm run check` | TypeScript 类型检查（会先补齐缺失的 D2 图） |
 | `npm run test` | 运行 Vitest 单测 |
 
 ## 发布文章
@@ -48,4 +51,4 @@ npm run dev      # http://localhost:4321/
 
 ## 技术栈
 
-Astro 5 · Tailwind 4 · React 18（岛屿）· Pagefind · Giscus · Vitest
+Astro 5 · Tailwind 4 · React 18（岛屿）· Pagefind · Giscus · D2（构建期 SVG）· Vitest

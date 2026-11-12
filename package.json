@@ -7,11 +7,17 @@
     "node": ">=20.0.0"
   },
   "scripts": {
+    "d2": "node scripts/render-d2.mjs",
+    "d2:force": "node scripts/render-d2.mjs --force",
+    "d2:prune": "node scripts/render-d2.mjs --prune",
+    "predev": "node scripts/render-d2.mjs",
     "dev": "astro dev",
+    "prebuild": "node scripts/render-d2.mjs",
     "build": "astro build",
     "postbuild": "pagefind --site dist",
     "preview": "astro preview",
     "start": "node server.mjs",
+    "precheck": "node scripts/render-d2.mjs",
     "check": "astro check",
     "test": "vitest run"
   },
@@ -27,9 +33,11 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "@d2lang/d2": "^0.1.34",
     "@tailwindcss/typography": "^0.5.20",
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",
+    "markdown-it": "^15.0.3",
     "pagefind": "^1.5.2",
     "typescript": "^5.9.3",
     "vitest": "^2.1.9"

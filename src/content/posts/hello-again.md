@@ -61,6 +61,19 @@ search('hello');
 
 *斜体* 和 **粗体** 都正常工作。链接也正常：去 [MDN](https://developer.mozilla.org/) 查文档。
 
+## D2 图
+
+构建期渲染的 D2 图，支持 TALA 布局和明暗两套配色：
+
+```d2 title="发布流程"
+user: 作者
+build: 构建期
+pages: GitHub Pages
+
+user -> build: 写 Markdown
+build -> pages: 静态资源
+```
+
 ---
 
 到这里如果每一段都看着顺眼，说明样式成了。这篇随时可以删——它只是个体检报告。
