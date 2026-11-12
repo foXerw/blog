@@ -284,6 +284,13 @@ a:hover {
   color: var(--accent);
 }
 
+.empty {
+  margin: 3rem 0;
+  color: var(--ink-faint);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+}
+
 /* ── 归档：年组 + 日志行 ── */
 .year-head {
   font-family: var(--font-mono);

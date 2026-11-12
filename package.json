@@ -16,6 +16,7 @@
     "build": "astro build",
     "postbuild": "pagefind --site dist",
     "preview": "astro preview",
+    "clean": "node scripts/clean.mjs",
     "start": "node server.mjs",
     "precheck": "node scripts/render-d2.mjs",
     "check": "astro check",

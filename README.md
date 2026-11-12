@@ -18,6 +18,7 @@ npm run dev      # http://localhost:4321/
 | `npm run d2` | 只渲染缺失/新增的 D2 图 |
 | `npm run d2:force` | 全部重新渲染 D2 图（改渲染参数后用） |
 | `npm run d2:prune` | 删除已无文章引用的 D2 图 |
+| `npm run clean` | 清理 dist、.astro 和内容缓存（删除文章后旧页面不消失时用） |
 | `npm start` | 生产环境静态服务器（Microverse 部署用，读 PORT） |
 | `npm run preview` | 预览构建产物 |
 | `npm run check` | TypeScript 类型检查（会先补齐缺失的 D2 图） |

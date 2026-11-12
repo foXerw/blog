@@ -13,16 +13,22 @@ export const getStaticPaths = (async ({ paginate }) => {
 const { page } = Astro.props;
 ---
 <Base title="foxerw 的博客">
-  <ul class="log">
-    {page.data.map(p => <PostCard post={p} />)}
-  </ul>
-  <nav class="pager">
-    {page.url.prev
-      ? <a href={page.url.prev}>← 更早</a>
-      : <span></span>}
-    <span class="pos">{page.currentPage} / {page.lastPage}</span>
-    {page.url.next
-      ? <a href={page.url.next}>更新 →</a>
-      : <span></span>}
-  </nav>
+  {page.data.length === 0 ? (
+    <p class="empty">还没有文章。写好第一篇后，它会出现在这里。</p>
+  ) : (
+    <Fragment>
+      <ul class="log">
+        {page.data.map(p => <PostCard post={p} />)}
+      </ul>
+      <nav class="pager">
+        {page.url.prev
+          ? <a href={page.url.prev}>← 更早</a>
+          : <span></span>}
+        <span class="pos">{page.currentPage} / {page.lastPage}</span>
+        {page.url.next
+          ? <a href={page.url.next}>更新 →</a>
+          : <span></span>}
+      </nav>
+    </Fragment>
+  )}
 </Base>
