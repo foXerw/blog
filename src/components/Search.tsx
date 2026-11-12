@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { withBase } from '../lib/urls';
 
 interface Result {
   id: string;
@@ -11,11 +12,12 @@ export default function Search() {
   const [q, setQ] = useState('');
   const [results, setResults] = useState<Result[]>([]);
   const [pf, setPf] = useState<any>(null);
+  const [unavailable, setUnavailable] = useState(false);
 
   useEffect(() => {
     import(/* @vite-ignore */ `${import.meta.env.BASE_URL}pagefind/pagefind.js`)
       .then((m: any) => { m.init?.(); setPf(m); })
-      .catch(() => {});
+      .catch(() => setUnavailable(true));
   }, []);
 
   useEffect(() => {
@@ -45,10 +47,15 @@ export default function Search() {
         className="search-input"
         autoFocus
       />
+      {unavailable && (
+        <p className="search-hint">
+          搜索索引不可用。本地开发请先运行 <code>npm run build</code> 再预览；线上请确认 pagefind/ 资源已部署。
+        </p>
+      )}
       <ul className="search-results">
         {results.map(r => (
           <li key={r.id}>
-            <a href={r.url}>{r.meta.title}</a>
+            <a href={withBase(import.meta.env.BASE_URL, r.url)}>{r.meta.title}</a>
             <p className="excerpt" dangerouslySetInnerHTML={{ __html: r.excerpt }} />
           </li>
         ))}

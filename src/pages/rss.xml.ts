@@ -9,7 +9,8 @@ export async function GET(context: APIContext) {
   return rss({
     title: 'foxerw 的博客',
     description: '技术与生活记录',
-    site: context.site!,
+    // 频道主页链接必须包含部署前缀；item 链接已是绝对地址，不会重复拼接
+    site: new URL(import.meta.env.BASE_URL, context.site!),
     items: posts.map(p => ({
       title: p.data.title,
       description: p.data.excerpt,

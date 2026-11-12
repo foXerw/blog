@@ -16,9 +16,10 @@ export function formatDate(
       d = dt.getDate();
     }
   } else {
-    y = input.getFullYear();
-    m = input.getMonth() + 1;
-    d = input.getDate();
+    // 内容集合的 date 解析为 UTC 零点；按 UTC 取年月日，避免构建机时区导致日期偏移
+    y = input.getUTCFullYear();
+    m = input.getUTCMonth() + 1;
+    d = input.getUTCDate();
   }
   if (locale === 'iso') {
     return `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`;

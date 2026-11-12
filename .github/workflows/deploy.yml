@@ -3,6 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -11,7 +13,8 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  # 按分支隔离，避免 PR 的构建取消正在进行的 main 部署
+  group: pages-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -35,6 +38,8 @@ jobs:
           path: dist
 
   deploy:
+    # PR 只跑检查，不部署
+    if: github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     environment:

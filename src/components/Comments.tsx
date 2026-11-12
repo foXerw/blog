@@ -9,9 +9,10 @@ export default function Comments({
   categoryId = '',        // TODO 同上
 }: Props) {
   const ref = useRef<HTMLDivElement>(null);
+  const configured = Boolean(repoId && categoryId);
 
   useEffect(() => {
-    if (!repoId || !categoryId || !ref.current) return;
+    if (!configured || !ref.current) return;
     const s = document.createElement('script');
     s.src = 'https://giscus.app/client.js';
     s.crossOrigin = 'anonymous';
@@ -25,7 +26,9 @@ export default function Comments({
     s.setAttribute('data-lang', 'zh-CN');
     ref.current.innerHTML = '';
     ref.current.appendChild(s);
-  }, [repo, repoId, category, categoryId]);
+  }, [configured, repo, repoId, category, categoryId]);
 
+  // 未配置 giscus 时不渲染空容器，避免看起来「有评论区但加载失败」
+  if (!configured) return null;
   return <div ref={ref} className="mt-10" />;
 }

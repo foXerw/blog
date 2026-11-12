@@ -8,9 +8,13 @@ describe('formatDate', () => {
   it('iso 格式', () => {
     expect(formatDate('2026-03-07', 'iso')).toBe('2026-03-07');
   });
-  it('Date 对象入参', () => {
-    // new Date(year, monthIndex, day) 构造的是本地时间，跨时区无歧义
-    expect(formatDate(new Date(2026, 2, 7), 'zh')).toBe('2026年3月7日');
+  it('Date 对象按 UTC 日期显示', () => {
+    // 内容集合的 date 会被解析为 UTC 零点，显示时不能受构建机器时区影响
+    expect(formatDate(new Date(Date.UTC(2026, 2, 7)), 'zh')).toBe('2026年3月7日');
+  });
+  it('UTC 晚间时刻不会被本地时区推到次日', () => {
+    // UTC+8 下本地日期是 3 月 8 日，但仍应显示 UTC 的 3 月 7 日
+    expect(formatDate(new Date(Date.UTC(2026, 2, 7, 23, 0, 0)), 'iso')).toBe('2026-03-07');
   });
 });
 

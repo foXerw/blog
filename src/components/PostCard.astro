@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { formatDate, readingTime } from '../lib/utils';
+import { tagSlug } from '../lib/tags';
 
 interface Props { post: CollectionEntry<'posts'>; }
 const { post } = Astro.props;
@@ -18,7 +19,7 @@ const base = import.meta.env.BASE_URL;
     <p class="log-meta">
       <span>{readingTime(post.body)} 分钟</span>
       {tags.map(t => (
-        <a href={`${base}tags/${t}`}>#{t}</a>
+        <a href={`${base}tags/${tagSlug(t)}`}>#{t}</a>
       ))}
     </p>
   </div>

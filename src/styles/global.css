@@ -440,6 +440,16 @@ a:hover {
 }
 .search-input:focus { border-bottom-color: var(--accent); }
 .search-input::placeholder { color: var(--ink-faint); }
+.search-hint {
+  margin: 1rem 0 0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+}
+.search-hint code {
+  background: var(--code-bg);
+  padding: 0.1em 0.3em;
+}
 .search-results { list-style: none; margin: 1.25rem 0 0; padding: 0; }
 .search-results li {
   padding: 0.9rem 0;

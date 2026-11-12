@@ -3,16 +3,24 @@ import type { GetStaticPaths } from 'astro';
 import Base from '../../../layouts/Base.astro';
 import PostCard from '../../../components/PostCard.astro';
 import { getCollection } from 'astro:content';
+import { tagSlug } from '../../../lib/tags';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = await getCollection('posts', p => !p.data.draft);
   const tags = [...new Set(posts.flatMap(p => p.data.tags))];
+  const used = new Map<string, string>();
   return tags.flatMap(tag => {
+    const slug = tagSlug(tag);
+    const conflict = used.get(slug);
+    if (conflict) {
+      throw new Error(`标签 slug 冲突："${conflict}" 与 "${tag}" 都映射到 "${slug}"，请修改其中一个标签名。`);
+    }
+    used.set(slug, tag);
     const filtered = posts
       .filter(p => p.data.tags.includes(tag))
       .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
     return paginate(filtered, {
-      params: { tag },
+      params: { tag: slug },
       props: { tag },
       pageSize: 10,
     });
