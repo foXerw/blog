@@ -27,9 +27,9 @@ function tree(children) {
 describe('remarkD2', () => {
   it('把 d2 code 节点替换为图片 HTML', () => {
     const t = tree([{ type: 'code', lang: 'd2', meta: '架构图', value: source }]);
-    remarkD2({ base: '/personal-blog/', svgDir })(t, { path: 'post.md' });
+    remarkD2({ base: '/blog/', svgDir })(t, { path: 'post.md' });
     expect(t.children[0].type).toBe('html');
-    expect(t.children[0].value).toContain('/personal-blog/d2/' + key + '.light.svg');
+    expect(t.children[0].value).toContain('/blog/d2/' + key + '.light.svg');
     expect(t.children[0].value).toContain('架构图');
     expect(t.children[0].value).toContain('width="120"');
     expect(t.children[0].value).toContain('height="80"');

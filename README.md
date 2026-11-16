@@ -39,12 +39,12 @@ npm run dev      # http://localhost:4321/
 
 ### GitHub Pages
 
-推送 `main` 分支 → GitHub Actions 自动构建并发布到 Pages（workflow 已注入 `BASE_PATH=/personal-blog/`、`SITE_URL=https://foxerw.github.io`）。PR 会跑 check/test/build，但不会部署。
+推送 `main` 分支 → GitHub Actions 自动构建并发布到 Pages（workflow 已注入 `BASE_PATH=/blog/`、`SITE_URL=https://foxerw.github.io`）。PR 会跑 check/test/build，但不会部署。
 首次需在仓库 Settings → Pages → Source 选 "GitHub Actions"。
 
 > 在 Windows Git Bash 中手动模拟子路径构建时，需加 `MSYS_NO_PATHCONV=1`，
-> 否则 `/personal-blog/` 会被 MSYS 转换成 `C:/Program Files/Git/personal-blog/`：
-> `MSYS_NO_PATHCONV=1 BASE_PATH=/personal-blog/ npm run build`
+> 否则 `/blog/` 会被 MSYS 转换成 `C:/Program Files/Git/blog/`：
+> `MSYS_NO_PATHCONV=1 BASE_PATH=/blog/ npm run build`
 
 ### Microverse
 

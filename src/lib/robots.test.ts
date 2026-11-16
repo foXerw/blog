@@ -3,8 +3,8 @@ import { robotsTxt } from './robots';
 
 describe('robotsTxt', () => {
   it('子路径部署时 sitemap 带 base 前缀', () => {
-    const out = robotsTxt('https://foxerw.github.io', '/personal-blog/');
-    expect(out).toContain('Sitemap: https://foxerw.github.io/personal-blog/sitemap-index.xml');
+    const out = robotsTxt('https://foxerw.github.io', '/blog/');
+    expect(out).toContain('Sitemap: https://foxerw.github.io/blog/sitemap-index.xml');
   });
 
   it('根路径部署时 sitemap 不带前缀', () => {

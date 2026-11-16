@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 import remarkD2 from './src/lib/remark-d2.mjs';
 
 // site/base 由部署平台在构建时通过环境变量注入：
-//  - GitHub Pages 项目页：SITE_URL=https://foxerw.github.io、BASE_PATH=/personal-blog/
+//  - GitHub Pages 项目页：SITE_URL=https://foxerw.github.io、BASE_PATH=/blog/
 //  - Microverse / 根域名部署：设置 SITE_URL 即可，BASE_PATH 默认 '/'
 export default defineConfig({
   site: process.env.SITE_URL || 'http://localhost:4321',

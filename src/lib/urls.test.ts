@@ -3,11 +3,11 @@ import { withBase } from './urls';
 
 describe('withBase', () => {
   it('子路径部署时拼接前缀', () => {
-    expect(withBase('/personal-blog/', '/tags/')).toBe('/personal-blog/tags/');
+    expect(withBase('/blog/', '/tags/')).toBe('/blog/tags/');
   });
 
   it('base 缺少尾斜杠时补齐', () => {
-    expect(withBase('/personal-blog', 'posts/x')).toBe('/personal-blog/posts/x');
+    expect(withBase('/blog', 'posts/x')).toBe('/blog/posts/x');
   });
 
   it('根路径部署不产生双斜杠', () => {

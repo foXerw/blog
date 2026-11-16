@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 interface Props { repo?: string; repoId?: string; category?: string; categoryId?: string; }
 
 export default function Comments({
-  repo = 'foxerw/personal-blog',
+  repo = 'foXerw/blog',
   repoId = '',            // TODO 部署后到 https://giscus.app 生成填入
   category = 'Announcements',
   categoryId = '',        // TODO 同上

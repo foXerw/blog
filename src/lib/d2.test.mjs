@@ -90,10 +90,10 @@ describe('figureMarkup', () => {
   const base = { key: 'abc', alt: '架构图', width: 800, height: 400 };
 
   it('输出带 base 的明暗两套地址', () => {
-    const html = figureMarkup({ ...base, base: '/personal-blog/' });
-    expect(html).toContain('src="/personal-blog/d2/abc.light.svg"');
-    expect(html).toContain('data-light="/personal-blog/d2/abc.light.svg"');
-    expect(html).toContain('data-dark="/personal-blog/d2/abc.dark.svg"');
+    const html = figureMarkup({ ...base, base: '/blog/' });
+    expect(html).toContain('src="/blog/d2/abc.light.svg"');
+    expect(html).toContain('data-light="/blog/d2/abc.light.svg"');
+    expect(html).toContain('data-dark="/blog/d2/abc.dark.svg"');
   });
 
   it('根路径部署不产生双斜杠', () => {
